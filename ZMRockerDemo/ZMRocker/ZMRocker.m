@@ -8,11 +8,16 @@
 
 #import "ZMRocker.h"
 
+#define kRadius ([self bounds].size.width * 0.5f)
+#define kTrackRadius kRadius * 0.8f
+
 @interface ZMRocker ()
 {
-    
+    CGFloat _x;
+    CGFloat _y;
 }
 
+@property (strong, nonatomic) UIImageView *handleImageView;
 @end
 
 @implementation ZMRocker
@@ -44,151 +49,128 @@
 
 - (void)commonInit
 {
-    UIImageView* = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"analogue_bg"]];
-    CGRect backgroundImageFrame = [_backgroundImageView frame];
-    backgroundImageFrame.size = [self bounds].size;
-    backgroundImageFrame.origin = CGPointZero;
-    [_backgroundImageView setFrame:backgroundImageFrame];
-    [self addSubview:_backgroundImageView];
+    [self setRockerStyle:RockStyleOpaque];
     
-    _handleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"analogue_handle"]];
+    _direction = RockDirectionCenter;
+    
+    if (!_handleImageView) {
+        UIImage *handleImage = [UIImage imageNamed:@"handlePressed"];
+        
+        _handleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width*0.5f-handleImage.size.width*0.5f,
+                                                                         self.bounds.size.height*0.5f-handleImage.size.height*0.5f,
+                                                                         handleImage.size.width,
+                                                                         handleImage.size.height)];
+        _handleImageView.image = handleImage;
+
+        [self addSubview:_handleImageView];
+    }
+    
+    _x = 0;
+    _y = 0;
+
+}
+- (void)setRockerStyle:(RockStyle)style
+{
+    NSArray *imageNames = @[@"rockerOpaqueBg",@"rockerTranslucentBg"];
+    
+    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:imageNames[style]]]];
+}
+
+- (void)resetHandle
+{
+    _handleImageView.image = [UIImage imageNamed:@"handleNormal"];
+
+    _x = 0.0;
+    _y = 0.0;
+    
     CGRect handleImageFrame = [_handleImageView frame];
-    handleImageFrame.size = CGSizeMake([_backgroundImageView bounds].size.width / 1.5,
-                                       [_backgroundImageView bounds].size.height / 1.5);
-    handleImageFrame.origin = CGPointMake(([self bounds].size.width - handleImageFrame.size.width) / 2,
-                                          ([self bounds].size.height - handleImageFrame.size.height) / 2);
+    handleImageFrame.origin = CGPointMake(([self bounds].size.width - [_handleImageView bounds].size.width) * 0.5f,
+                                          ([self bounds].size.height - [_handleImageView bounds].size.height) * 0.5f);
     [_handleImageView setFrame:handleImageFrame];
-    [self addSubview:_handleImageView];
+
+}
+
+- (void)setHandlePositionWithLocation:(CGPoint)location
+{
+    _x = location.x - kRadius;
+    _y = -(location.y - kRadius);
     
-    _xValue = 0;
-    _yValue = 0;
+    float r = sqrt(_x * _x + _y * _y);
+    
+    if (r >= kTrackRadius) {
+        
+        _x = kTrackRadius * (_x / r);
+        _y = kTrackRadius * (_y / r);
+        
+        location.x = _x + kRadius;
+        location.y = -_y + kRadius;
+        
+        [self rockerValueChanged];
+    }
+    
+    CGRect handleImageFrame = [_handleImageView frame];
+    handleImageFrame.origin = CGPointMake(location.x - ([_handleImageView bounds].size.width * 0.5f),
+                                          location.y - ([_handleImageView bounds].size.width * 0.5f));
+    [_handleImageView setFrame:handleImageFrame];
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    _handleImageView.image = [UIImage imageNamed:@"handlePressed"];
+    
     CGPoint location = [[touches anyObject] locationInView:self];
     
-    CGFloat normalisedX = (location.x / RADIUS) - 1;
-    CGFloat normalisedY = ((location.y / RADIUS) - 1) * -1;
-    
-    if (normalisedX > 1.0)
-    {
-        location.x = [self bounds].size.width;
-        normalisedX = 1.0;
-    }
-    else if (normalisedX < -1.0)
-    {
-        location.x = 0.0;
-        normalisedX = -1.0;
-    }
-    
-    if (normalisedY > 1.0)
-    {
-        location.y = 0.0;
-        normalisedY = 1.0;
-    }
-    else if (normalisedY < -1.0)
-    {
-        location.y = [self bounds].size.height;
-        normalisedY = -1.0;
-    }
-    
-    if (self.invertedYAxis)
-    {
-        normalisedY *= -1;
-    }
-    
-    _xValue = normalisedX;
-    _yValue = normalisedY;
-    
-    CGRect handleImageFrame = [_handleImageView frame];
-    handleImageFrame.origin = CGPointMake(location.x - ([_handleImageView bounds].size.width / 2),
-                                          location.y - ([_handleImageView bounds].size.width / 2));
-    [_handleImageView setFrame:handleImageFrame];
-    
-    if ([self.delegate respondsToSelector:@selector(analogueStickDidChangeValue:)])
-    {
-        [self.delegate analogueStickDidChangeValue:self];
-    }
+    [self setHandlePositionWithLocation:location];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     CGPoint location = [[touches anyObject] locationInView:self];
     
-    CGFloat normalisedX = (location.x / RADIUS) - 1;
-    CGFloat normalisedY = ((location.y / RADIUS) - 1) * -1;
-    
-    if (normalisedX > 1.0)
-    {
-        location.x = [self bounds].size.width;
-        normalisedX = 1.0;
-    }
-    else if (normalisedX < -1.0)
-    {
-        location.x = 0.0;
-        normalisedX = -1.0;
-    }
-    
-    if (normalisedY > 1.0)
-    {
-        location.y = 0.0;
-        normalisedY = 1.0;
-    }
-    else if (normalisedY < -1.0)
-    {
-        location.y = [self bounds].size.height;
-        normalisedY = -1.0;
-    }
-    
-    if (self.invertedYAxis)
-    {
-        normalisedY *= -1;
-    }
-    
-    _xValue = normalisedX;
-    _yValue = normalisedY;
-    
-    CGRect handleImageFrame = [_handleImageView frame];
-    handleImageFrame.origin = CGPointMake(location.x - ([_handleImageView bounds].size.width / 2),
-                                          location.y - ([_handleImageView bounds].size.width / 2));
-    [_handleImageView setFrame:handleImageFrame];
-    
-    if ([self.delegate respondsToSelector:@selector(analogueStickDidChangeValue:)])
-    {
-        [self.delegate analogueStickDidChangeValue:self];
-    }
+    [self setHandlePositionWithLocation:location];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    _xValue = 0.0;
-    _yValue = 0.0;
+    [self resetHandle];
     
-    CGRect handleImageFrame = [_handleImageView frame];
-    handleImageFrame.origin = CGPointMake(([self bounds].size.width - [_handleImageView bounds].size.width) / 2,
-                                          ([self bounds].size.height - [_handleImageView bounds].size.height) / 2);
-    [_handleImageView setFrame:handleImageFrame];
-    
-    if ([self.delegate respondsToSelector:@selector(analogueStickDidChangeValue:)])
-    {
-        [self.delegate analogueStickDidChangeValue:self];
-    }
+    [self rockerValueChanged];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    _xValue = 0.0;
-    _yValue = 0.0;
+    [self resetHandle];
     
-    CGRect handleImageFrame = [_handleImageView frame];
-    handleImageFrame.origin = CGPointMake(([self bounds].size.width - [_handleImageView bounds].size.width) / 2,
-                                          ([self bounds].size.height - [_handleImageView bounds].size.height) / 2);
-    [_handleImageView setFrame:handleImageFrame];
+    [self rockerValueChanged];
+}
+
+- (void)rockerValueChanged
+{
+    NSInteger rockerDirection = -1;
+
+    float arc = atan2f(_y,_x);
     
-    if ([self.delegate respondsToSelector:@selector(analogueStickDidChangeValue:)])
+    if ((arc > (3.0f/4.0f)*M_PI &&  arc < M_PI) || (arc < -(3.0f/4.0f)*M_PI &&  arc > -M_PI)) {
+        rockerDirection = RockDirectionLeft;
+    }else if (arc > (1.0f/4.0f)*M_PI &&  arc < (3.0f/4.0f)*M_PI) {
+        rockerDirection = RockDirectionUp;
+    }else if ((arc > 0 &&  arc < (1.0f/4.0f)*M_PI) || (arc < 0 &&  arc > -(1.0f/4.0f)*M_PI)) {
+        rockerDirection = RockDirectionRight;
+    }else if (arc > -(3.0f/4.0f)*M_PI &&  arc < -(1.0f/4.0f)*M_PI) {
+        rockerDirection = RockDirectionDown;
+    }else if (0 == _x && 0 == _y)
     {
-        [self.delegate analogueStickDidChangeValue:self];
+        rockerDirection = RockDirectionCenter;
+    }
+    
+    if (-1 != rockerDirection && rockerDirection != _direction) {
+        _direction = rockerDirection;
+        
+        if ([self.delegate respondsToSelector:@selector(rockerDidChangeDirection:)])
+        {
+            [self.delegate rockerDidChangeDirection:self];
+        }
     }
 }
 @end

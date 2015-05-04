@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<ZMRockerDelegate>
 
 @end
 
@@ -17,11 +17,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.rocker.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)rockerDidChangeDirection:(ZMRocker *)rocker
+{
+    NSLog(@"Direction : %ld",(long)rocker.direction);
+    
+    NSArray *directios = @[@"Left",@"Up",@"Right",@"Down",@"Center"];
+    
+    _label.text = directios[rocker.direction];
 }
 
 @end

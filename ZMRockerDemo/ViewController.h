@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZMRocker.h"
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet ZMRocker *rocker;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 

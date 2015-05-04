@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36567CEA1A772B55002735D7 /* handleNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 36567CE61A772B55002735D7 /* handleNormal.png */; };
+		36567CEB1A772B55002735D7 /* handlePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 36567CE71A772B55002735D7 /* handlePressed.png */; };
+		36567CEC1A772B55002735D7 /* rockerOpaqueBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 36567CE81A772B55002735D7 /* rockerOpaqueBg.png */; };
+		36567CED1A772B55002735D7 /* rockerTranslucentBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 36567CE91A772B55002735D7 /* rockerTranslucentBg.png */; };
 		36D58CCF1A75E903008218B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D58CCE1A75E903008218B1 /* main.m */; };
 		36D58CD21A75E903008218B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D58CD11A75E903008218B1 /* AppDelegate.m */; };
 		36D58CD51A75E903008218B1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D58CD41A75E903008218B1 /* ViewController.m */; };
@@ -14,6 +18,11 @@
 		36D58CDA1A75E903008218B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36D58CD91A75E903008218B1 /* Images.xcassets */; };
 		36D58CDD1A75E903008218B1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D58CDB1A75E903008218B1 /* LaunchScreen.xib */; };
 		36D58CE91A75E903008218B1 /* ZMRockerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D58CE81A75E903008218B1 /* ZMRockerDemoTests.m */; };
+		36D58D001A75EC09008218B1 /* ZMRocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D58CFB1A75EC09008218B1 /* ZMRocker.m */; };
+		36D58D051A75ECE8008218B1 /* handleNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D58D011A75ECE8008218B1 /* handleNormal@2x.png */; };
+		36D58D061A75ECE8008218B1 /* handlePressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D58D021A75ECE8008218B1 /* handlePressed@2x.png */; };
+		36D58D0B1A75EF40008218B1 /* rockerOpaqueBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D58D091A75EF40008218B1 /* rockerOpaqueBg@2x.png */; };
+		36D58D0C1A75EF40008218B1 /* rockerTranslucentBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D58D0A1A75EF40008218B1 /* rockerTranslucentBg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36567CE61A772B55002735D7 /* handleNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handleNormal.png; sourceTree = "<group>"; };
+		36567CE71A772B55002735D7 /* handlePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handlePressed.png; sourceTree = "<group>"; };
+		36567CE81A772B55002735D7 /* rockerOpaqueBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rockerOpaqueBg.png; sourceTree = "<group>"; };
+		36567CE91A772B55002735D7 /* rockerTranslucentBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rockerTranslucentBg.png; sourceTree = "<group>"; };
 		36D58CC91A75E903008218B1 /* ZMRockerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMRockerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D58CCD1A75E903008218B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36D58CCE1A75E903008218B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +53,12 @@
 		36D58CE21A75E903008218B1 /* ZMRockerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZMRockerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D58CE71A75E903008218B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36D58CE81A75E903008218B1 /* ZMRockerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMRockerDemoTests.m; sourceTree = "<group>"; };
+		36D58CFA1A75EC09008218B1 /* ZMRocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMRocker.h; sourceTree = "<group>"; };
+		36D58CFB1A75EC09008218B1 /* ZMRocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMRocker.m; sourceTree = "<group>"; };
+		36D58D011A75ECE8008218B1 /* handleNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handleNormal@2x.png"; sourceTree = "<group>"; };
+		36D58D021A75ECE8008218B1 /* handlePressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handlePressed@2x.png"; sourceTree = "<group>"; };
+		36D58D091A75EF40008218B1 /* rockerOpaqueBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rockerOpaqueBg@2x.png"; sourceTree = "<group>"; };
+		36D58D0A1A75EF40008218B1 /* rockerTranslucentBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rockerTranslucentBg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +100,7 @@
 		36D58CCB1A75E903008218B1 /* ZMRockerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				36D58CF51A75EC09008218B1 /* ZMRocker */,
 				36D58CD01A75E903008218B1 /* AppDelegate.h */,
 				36D58CD11A75E903008218B1 /* AppDelegate.m */,
 				36D58CD31A75E903008218B1 /* ViewController.h */,
@@ -117,6 +137,23 @@
 				36D58CE71A75E903008218B1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		36D58CF51A75EC09008218B1 /* ZMRocker */ = {
+			isa = PBXGroup;
+			children = (
+				36567CE61A772B55002735D7 /* handleNormal.png */,
+				36567CE71A772B55002735D7 /* handlePressed.png */,
+				36567CE81A772B55002735D7 /* rockerOpaqueBg.png */,
+				36567CE91A772B55002735D7 /* rockerTranslucentBg.png */,
+				36D58D091A75EF40008218B1 /* rockerOpaqueBg@2x.png */,
+				36D58D0A1A75EF40008218B1 /* rockerTranslucentBg@2x.png */,
+				36D58D011A75ECE8008218B1 /* handleNormal@2x.png */,
+				36D58D021A75ECE8008218B1 /* handlePressed@2x.png */,
+				36D58CFA1A75EC09008218B1 /* ZMRocker.h */,
+				36D58CFB1A75EC09008218B1 /* ZMRocker.m */,
+			);
+			path = ZMRocker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +236,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36567CEB1A772B55002735D7 /* handlePressed.png in Resources */,
+				36567CEA1A772B55002735D7 /* handleNormal.png in Resources */,
+				36D58D0C1A75EF40008218B1 /* rockerTranslucentBg@2x.png in Resources */,
+				36567CEC1A772B55002735D7 /* rockerOpaqueBg.png in Resources */,
 				36D58CD81A75E903008218B1 /* Main.storyboard in Resources */,
+				36D58D051A75ECE8008218B1 /* handleNormal@2x.png in Resources */,
+				36567CED1A772B55002735D7 /* rockerTranslucentBg.png in Resources */,
+				36D58D061A75ECE8008218B1 /* handlePressed@2x.png in Resources */,
 				36D58CDD1A75E903008218B1 /* LaunchScreen.xib in Resources */,
+				36D58D0B1A75EF40008218B1 /* rockerOpaqueBg@2x.png in Resources */,
 				36D58CDA1A75E903008218B1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +266,7 @@
 			files = (
 				36D58CD51A75E903008218B1 /* ViewController.m in Sources */,
 				36D58CD21A75E903008218B1 /* AppDelegate.m in Sources */,
+				36D58D001A75EC09008218B1 /* ZMRocker.m in Sources */,
 				36D58CCF1A75E903008218B1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +460,7 @@
 				36D58CEE1A75E903008218B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36D58CEF1A75E903008218B1 /* Build configuration list for PBXNativeTarget "ZMRockerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +469,7 @@
 				36D58CF11A75E903008218B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
